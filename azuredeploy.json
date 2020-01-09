@@ -1,0 +1,149 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    "pricingTierVirtualMachines": {
+            "type": "string",
+            "allowedValues": [
+                "Standard",
+                "Free"
+            ]
+        },
+    "pricingTierSqlServers": {
+        "type": "string",
+        "allowedValues": [
+            "Standard",
+            "Free"
+            ]
+        },
+    "pricingTierAppServices": {
+        "type": "string",
+        "allowedValues": [
+            "Standard",
+            "Free"
+            ]
+        },
+    "pricingTierStorageAccounts": {
+        "type": "string",
+         "allowedValues": [
+            "Standard",
+            "Free"
+                ]
+        },
+    "pricingTierSqlServerVirtualMachines": {
+        "type": "string",
+            "allowedValues": [
+            "Standard",
+            "Free"
+                ]
+        },
+    "pricingTierKubernetesService": {
+        "type": "string",
+            "allowedValues": [
+            "Standard",
+            "Free"
+                ]
+        },
+    "pricingTierContainerRegistry": {
+        "type": "string",
+            "allowedValues": [
+            "Standard",
+            "Free"
+                ]
+        },
+    "pricingTierKeyVaults": {
+        "type": "string",
+            "allowedValues": [
+            "Standard",
+            "Free"
+                ]
+        }
+    },
+    "resources": [
+        {
+        "name": "VirtualMachines",
+        "type": "Microsoft.Security/pricings",
+        "apiVersion": "2018-06-01",
+        "properties": {
+            "pricingTier": "[parameters('pricingTierVirtualMachines')]"
+        }
+        },
+        {
+        "name": "SqlServers",
+        "type": "Microsoft.Security/pricings",
+        "apiVersion": "2018-06-01",
+        "dependsOn": [
+            "Microsoft.Security/pricings/VirtualMachines"
+        ],
+        "properties": {
+            "pricingTier": "[parameters('pricingTierSqlServers')]"
+        }
+        },
+        {
+        "name": "AppServices",
+        "type": "Microsoft.Security/pricings",
+        "apiVersion": "2018-06-01",
+        "dependsOn": [
+            "Microsoft.Security/pricings/SqlServers"
+        ],
+        "properties": {
+            "pricingTier": "[parameters('pricingTierAppServices')]"
+        }
+        },
+        {
+        "name": "StorageAccounts",
+        "type": "Microsoft.Security/pricings",
+        "apiVersion": "2018-06-01",
+        "dependsOn": [
+            "Microsoft.Security/pricings/AppServices"
+        ],
+        "properties": {
+            "pricingTier": "[parameters('pricingTierStorageAccounts')]"
+        }
+        },
+        {
+        "name": "SqlServerVirtualMachines",
+        "type": "Microsoft.Security/pricings",
+        "apiVersion": "2018-06-01",
+        "dependsOn": [
+            "Microsoft.Security/pricings/StorageAccounts"
+        ],
+        "properties": {
+            "pricingTier": "[parameters('pricingTierSqlServerVirtualMachines')]"
+        }
+        },
+        {
+        "name": "KubernetesService",
+        "type": "Microsoft.Security/pricings",
+        "apiVersion": "2018-06-01",
+        "dependsOn": [
+            "Microsoft.Security/pricings/SqlServerVirtualMachines"
+        ],
+        "properties": {
+            "pricingTier": "[parameters('pricingTierKubernetesService')]"
+        }
+        },
+        {
+        "name": "ContainerRegistry",
+        "type": "Microsoft.Security/pricings",
+        "apiVersion": "2018-06-01",
+        "dependsOn": [
+            "Microsoft.Security/pricings/KubernetesService"
+        ],
+        "properties": {
+            "pricingTier": "[parameters('pricingTierContainerRegistry')]"
+        }
+        },
+        {
+        "name": "KeyVaults",
+        "type": "Microsoft.Security/pricings",
+        "apiVersion": "2018-06-01",
+        "dependsOn": [
+            "Microsoft.Security/pricings/ContainerRegistry"
+        ],
+        "properties": {
+            "pricingTier": "[parameters('pricingTierKeyVaults')]"
+        }
+        }
+    ]
+}

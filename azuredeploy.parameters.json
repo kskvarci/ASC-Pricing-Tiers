@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "pricingTierVirtualMachines": {
+            "value": "Free"
+        },
+        "pricingTierSqlServers": {
+            "value": "Free"
+        },
+        "pricingTierAppServices": {
+            "value": "Free"
+        },
+        "pricingTierStorageAccounts": {
+            "value": "Free"
+        },
+        "pricingTierSqlServerVirtualMachines": {
+            "value": "Free"
+        },
+        "pricingTierKubernetesService": {
+            "value": "Free"
+        },
+        "pricingTierContainerRegistry": {
+            "value": "Free"
+        },
+        "pricingTierKeyVaults": {
+            "value": "Free"
+        }
+    }
+}
