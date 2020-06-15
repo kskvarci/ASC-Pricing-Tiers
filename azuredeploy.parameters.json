@@ -23,9 +23,6 @@
         "pricingTierContainerRegistry": {
             "value": "Free"
         },
-        "pricingTierKubernetesService": {
-            "value": "Free"
-        },
         "pricingTierKeyVaults": {
             "value": "Free"
         }
