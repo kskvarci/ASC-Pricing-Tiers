@@ -58,13 +58,6 @@
             "Free"
                 ]
         }
-     "pricingTierKubernetesService": {
-        "type": "string",
-            "allowedValues": [
-            "Standard",
-            "Free"
-                ]
-        },
     },
     "resources": [
         {
@@ -73,13 +66,6 @@
         "apiVersion": "2018-06-01",
         "properties": {
             "pricingTier": "[parameters('pricingTierVirtualMachines')]"
-        }
-        },
-        {
-        "name": "KubernetesService",
-        "type": "Microsoft.Security/pricings",
-        "properties": {
-          "pricingTier": "[parameters('pricingTierKubernetesService')]",
         }
         },
         {
